@@ -1,0 +1,31 @@
+server:
+  port: 8080
+  shutdown: graceful
+
+spring:
+  profiles:
+    active: dev # ?? ?? ???? dev? ??
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev # dev ???? ?? ??
+  application:
+    name: lesson-test
+  datasource:
+    url: jdbc:mysql://localhost:3306/lesson?useSSL=false&allowPublicKeyRetrieval=true
+    username: lesson
+    password: secret
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: false
+    open-in-view: false
+
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: true # P6Spy ?? ???
+      multiline: true
