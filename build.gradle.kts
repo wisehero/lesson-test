@@ -26,13 +26,24 @@ repositories {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
+
     compileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
+
     developmentOnly("org.springframework.boot:spring-boot-docker-compose")
     developmentOnly("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0") // 최신 버전 확인
+
     runtimeOnly("com.mysql:mysql-connector-j")
-    annotationProcessor("org.projectlombok:lombok")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+    testImplementation("org.testcontainers:mysql")
+    testImplementation("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0")
+    testImplementation("org.instancio:instancio-junit:4.8.0")
+    testImplementation("org.springframework.boot:spring-boot-testcontainers")
+    testImplementation("org.testcontainers:testcontainers")
+    testImplementation("org.testcontainers:junit-jupiter")
 }
 
 tasks.withType<Test> {
