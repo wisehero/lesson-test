@@ -4,18 +4,18 @@ server:
 
 spring:
   profiles:
-    active: dev # ?? ?? ???? dev? ??
+    active: dev
 
 ---
 
 spring:
   config:
     activate:
-      on-profile: dev # dev ???? ?? ??
+      on-profile: dev
   application:
     name: lesson-test
   datasource:
-    url: jdbc:mysql://localhost:3306/lesson?useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306/lesson?useSSL=false&allowPublicKeyRetrieval=true&rewriteBatchedStatements=true
     username: lesson
     password: secret
   jpa:
@@ -23,9 +23,21 @@ spring:
       ddl-auto: create
     show-sql: false
     open-in-view: false
+    properties:
+      hibernate.jdbc.batch_size: 1000   # 1000개 단위로 batch
+      hibernate.order_inserts: true
+      hibernate.order_updates: true
 
 decorator:
   datasource:
     p6spy:
-      enable-logging: true # P6Spy ?? ???
+      enable-logging: true
       multiline: true
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: test
+
